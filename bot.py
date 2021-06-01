@@ -3,6 +3,7 @@ from discord import message
 from discord.ext import commands
 import wikipedia,os
 from chatbot import Chat, register_call
+from datetime import datetime
 
 
 intents = discord.Intents.default()
@@ -53,7 +54,7 @@ async def on_ready():
 async def droid(ctx,*,message):
     result = chat.respond(message)
     if(len(result)<=2048):
-        embed=discord.Embed(title="Subdroid", description = result, color = (ctx.author.color))
+        embed=discord.Embed(title="Subdroid", description = result, color = (ctx.author.color), timestamp=datetime.utcnow())
         await ctx.send(embed=embed)
     else:
         embedList = []
@@ -61,11 +62,11 @@ async def droid(ctx,*,message):
         embedList = [result[i:i+n] for i in range(0, len(result), n)]
         for num, item in enumerate(embedList, start = 1):
             if(num == 1):
-                embed = discord.Embed(title="Subdroid", description = item, color = (ctx.author.color))
+                embed = discord.Embed(title="Subdroid", description = item, color = (ctx.author.color), timestamp=datetime.utcnow())
                 embed.set_footer(text="Page {}".format(num))
                 await ctx.send(embed = embed)
             else:
-                embed = discord.Embed(description = item, color = (ctx.author.color))
+                embed = discord.Embed(description = item, color = (ctx.author.color), timestamp=datetime.utcnow())
                 embed.set_footer(text = "Page {}".format(num))
                 await ctx.send(embed = embed)
 
