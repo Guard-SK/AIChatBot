@@ -69,4 +69,4 @@ async def droid(ctx,*,message):
                 embed.set_footer(text = "Page {}".format(num))
                 await ctx.send(embed = embed)
 
-bot.run("ODQ4NjQyMzI3NDQyNDg5MzQ1.YLPlwQ.UjiX1WhIAMYgBUBcGhd3YvsIwcA") # os.environ['DISCORD_TOKEN']
+bot.run(os.environ['DISCORD_TOKEN']) # os.environ['DISCORD_TOKEN']
