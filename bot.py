@@ -4,8 +4,10 @@ from discord.ext import commands
 import wikipedia,os
 from chatbot import Chat, register_call
 
+intents = discord.Intents.default()
+intents.members = True
 prefix = "ai"
-bot = commands.Bot(command_prefix = prefix)
+bot = commands.Bot(command_prefix = prefix, intents=intents)
 
 @register_call("whoIs")
 def viki_sum(self, query):
