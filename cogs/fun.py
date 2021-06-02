@@ -9,6 +9,7 @@ from discord.ext.commands import Cog, BucketType
 from discord.ext.commands import BadArgument
 from discord.ext.commands import cooldown
 from discord.ext import commands
+from datetime import datetime
 
 import discord
 
@@ -40,7 +41,7 @@ class Fun(Cog):
         await msg.edit(content="https://cdn.discordapp.com/attachments/629382706299666432/849734008883249162/3.png")
         await asyncio.sleep(0.50)
         await msg.delete()
-        embed=discord.Embed(title="Result", description="------------>")
+        embed=discord.Embed(title="Result", description="------------>", color=ctx.author.color, timestamp=datetime.utcnow()) 
         embed.set_thumbnail(url=f"{choice(('https://cdn.discordapp.com/attachments/629382706299666432/849733983234555994/1.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849733995909480511/2.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849734008883249162/3.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849734049689370664/4.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849734076880519179/5.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849734094111637514/6.png'))}")
         
         await ctx.send(embed=embed)
