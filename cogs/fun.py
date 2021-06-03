@@ -19,7 +19,7 @@ class Fun(Cog):
 
     @commands.command(name="dice6", aliases=["roll6"])
     @cooldown(1, 10, BucketType.user)
-    async def dice(self, ctx):
+    async def dice6(self, ctx):
         msg = await ctx.send("https://cdn.discordapp.com/attachments/629382706299666432/849733983234555994/1.png")
         await asyncio.sleep(0.50)
         await msg.edit(content="https://cdn.discordapp.com/attachments/629382706299666432/849734076880519179/5.png")
@@ -45,11 +45,15 @@ class Fun(Cog):
         embed.set_thumbnail(url=f"{choice(('https://cdn.discordapp.com/attachments/629382706299666432/849733983234555994/1.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849733995909480511/2.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849734008883249162/3.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849734049689370664/4.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849734076880519179/5.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849734094111637514/6.png'))}")
         
         await ctx.send(embed=embed)
-        # await ctx.send(f"{choice(('https://cdn.discordapp.com/attachments/629382706299666432/849733983234555994/1.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849733995909480511/2.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849734008883249162/3.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849734049689370664/4.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849734076880519179/5.png', 'https://cdn.discordapp.com/attachments/629382706299666432/849734094111637514/6.png'))}")
+
+    @commands.command(name="flip", aliases=["coin"])
+    @cooldown(1, 10, BucketType.user)
+    async def flip_a_coin(self, ctx):
+        await ctx.send(f"{choice(('https://cdn.discordapp.com/attachments/629382706299666432/850101854624808960/zh.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101865874325514/zz.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101876632715284/hz.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101887982239824/hh.gif'))} {ctx.author.mention}!")
 
 
     @commands.command(name="dice", aliases=["roll"])
-    @cooldown(1, 10, BucketType.user)
+    @commands.cooldown(1, 10, BucketType.user)
     async def roll_dice(self, ctx, die_string: str):
         dice, value = (int(term) for term in die_string.split("d"))
 
