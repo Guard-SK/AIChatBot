@@ -4,6 +4,11 @@ from discord.ext import commands
 import wikipedia,os
 from chatbot import Chat, register_call
 from datetime import datetime
+from discord.ext.commands import (CommandNotFound, BadArgument, MissingRequiredArgument, CommandOnCooldown)
+from discord.ext.commands.errors import MissingPermissions
+from discord import Intents
+from discord.errors import HTTPException, Forbidden
+from discord.ext.commands import Bot as BotBase
 
 
 intents = discord.Intents.default()
@@ -11,6 +16,7 @@ intents.members = True
 prefix = "sub"
 bot = commands.Bot(command_prefix = prefix, intents=intents)
 COGS = [path[:-3] for path in os.listdir('./cogs') if path[-3:] == '.py']
+IGNORE_EXCEPTIONS = (CommandNotFound, BadArgument)
 
 
 @bot.command()
@@ -48,7 +54,14 @@ chat=Chat(template_file_path)
 
 @bot.event
 async def on_ready():
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="https://github.com/Guard-SK/Subdroid"))
     print("Subdroid started")
+
+# @bot.event
+# async def on_command_error(ctx, error):
+#     if isinstance(error, commands.CommandOnCooldown):
+#         msg = f"<a:no_entry:826849755916140574>Cool down man <a:melting_ice:826761004980764702>. Try again in {error.retry_after:,.2f} secs.<a:no_entry:826849755916140574>"
+#         await ctx.send(msg)
 
 @bot.command(pass_context = True)
 async def droid(ctx,*,message):
