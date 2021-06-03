@@ -49,7 +49,7 @@ class Fun(Cog):
     @commands.command(name="flip", aliases=["coin"])
     @cooldown(1, 10, BucketType.user)
     async def flip_a_coin(self, ctx):
-        await ctx.send(f"{choice(('https://cdn.discordapp.com/attachments/629382706299666432/850101854624808960/zh.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101865874325514/zz.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101876632715284/hz.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101887982239824/hh.gif'))} {ctx.author.mention}!")
+        await ctx.send(f"{choice(('https://cdn.discordapp.com/attachments/629382706299666432/850101854624808960/zh.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101865874325514/zz.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101876632715284/hz.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101887982239824/hh.gif'))}")
 
 
     @commands.command(name="dice", aliases=["roll"])
