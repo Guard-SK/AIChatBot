@@ -9,14 +9,17 @@ from discord.ext.commands.errors import MissingPermissions
 from discord import Intents
 from discord.errors import HTTPException, Forbidden
 from discord.ext.commands import Bot as BotBase
+from discord_slash import SlashCommand, SlashCommandOptionType, SlashContext
 
 
 intents = discord.Intents.default()
 intents.members = True
-prefix = "sub"
+prefix = "!"
 bot = commands.Bot(command_prefix = prefix, intents=intents)
+slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 COGS = [path[:-3] for path in os.listdir('./cogs') if path[-3:] == '.py']
 IGNORE_EXCEPTIONS = (CommandNotFound, BadArgument)
+
 
 
 @bot.command()
@@ -83,4 +86,4 @@ async def droid(ctx,*,message):
                 embed.set_footer(text = "Page {}".format(num))
                 await ctx.send(embed = embed)
 
-bot.run(os.environ['DISCORD_TOKEN']) # os.environ['DISCORD_TOKEN']
+bot.run("ODQ4NjQyMzI3NDQyNDg5MzQ1.YLPlwQ.pXLpNLRCudy0PmP557LxyATgwRw") # os.environ['DISCORD_TOKEN']
