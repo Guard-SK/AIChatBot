@@ -10,12 +10,13 @@ from discord.ext.commands import BadArgument
 from discord.ext.commands import cooldown
 from discord.ext import commands
 from datetime import datetime
-
+from discord_slash import SlashCommand, SlashCommandOptionType, SlashContext, cog_ext
 import discord
 
 class Fun(Cog):
     def __init__(self, bot):
         self.bot = bot
+
 
     @commands.command(name="dice6", aliases=["roll6"])
     @cooldown(1, 10, BucketType.user)
@@ -46,10 +47,30 @@ class Fun(Cog):
         
         await ctx.send(embed=embed)
 
+
     @commands.command(name="flip", aliases=["coin"])
     @cooldown(1, 10, BucketType.user)
     async def flip_a_coin(self, ctx):
-        await ctx.send(f"{choice(('https://cdn.discordapp.com/attachments/629382706299666432/850101854624808960/zh.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101865874325514/zz.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101876632715284/hz.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101887982239824/hh.gif'))}")
+        msg = await ctx.send(f"{choice(('https://cdn.discordapp.com/attachments/629382706299666432/850101854624808960/zh.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101865874325514/zz.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101876632715284/hz.gif', 'https://cdn.discordapp.com/attachments/629382706299666432/850101887982239824/hh.gif'))}")
+        if msg == "https://cdn.discordapp.com/attachments/629382706299666432/850101854624808960/zh.gif":
+            await asyncio.sleep(4)
+            await msg.edit(content="https://cdn.discordapp.com/attachments/629382706299666432/850380983839883294/h2.png")
+
+        elif msg == 'https://cdn.discordapp.com/attachments/629382706299666432/850101865874325514/zz.gif':
+            await asyncio.sleep(4)
+            await msg.edit(content="https://cdn.discordapp.com/attachments/629382706299666432/850380975119532032/z2.png")
+
+        elif msg == 'https://cdn.discordapp.com/attachments/629382706299666432/850101876632715284/hz.gif':
+            await asyncio.sleep(4)
+            await msg.edit(content="https://cdn.discordapp.com/attachments/629382706299666432/850380975119532032/z2.png")
+
+        elif msg == 'https://cdn.discordapp.com/attachments/629382706299666432/850101887982239824/hh.gif':
+            await asyncio.sleep(4)
+            await msg.edit(content="https://cdn.discordapp.com/attachments/629382706299666432/850380983839883294/h2.png")
+
+        else:
+            await msg.delete()
+            await ctx.send("Don't know what happend, please try again.")
 
 
     @commands.command(name="dice", aliases=["roll"])
@@ -70,6 +91,7 @@ class Fun(Cog):
         if isinstance(exc.original, HTTPException):
             await ctx.send("Too many dice rolled. Please try lower number.")
 
+
     @commands.command(name="slap", aliases=["hit"])
     @cooldown(1, 5, BucketType.user)
     async def slap_member(self, ctx, member: Member, *, reason: Optional[str] = "no reason"):
@@ -80,11 +102,13 @@ class Fun(Cog):
         if isinstance(exc, BadArgument):
             await ctx.send("Can't find the memeber you mentioned.")
 
+
     @commands.command(name="say", aliases=["echo"])
     @cooldown(1, 5, BucketType.user)
     async def echo_message(self, ctx, *, message):
         await ctx.message.delete()
         await ctx.send(message)
+
 
     @commands.command(name="fact")
     @cooldown(1, 10, BucketType.user)
@@ -123,10 +147,12 @@ class Fun(Cog):
     async def animal_fact_error(self, ctx, animal:str):
         pass
 
+
     @commands.command(name="dm", aliases=["direct message", "send"])
     async def send_dm(self, ctx, member: discord.Member, *, content):
         channel = await member.create_dm()
         await channel.send(content)
+
 
     @commands.Cog.listener()
     async def on_ready(self):

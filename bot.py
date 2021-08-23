@@ -14,7 +14,7 @@ from discord_slash import SlashCommand, SlashCommandOptionType, SlashContext
 
 intents = discord.Intents.default()
 intents.members = True
-prefix = "!"
+prefix = "sub"
 bot = commands.Bot(command_prefix = prefix, intents=intents)
 slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 COGS = [path[:-3] for path in os.listdir('./cogs') if path[-3:] == '.py']
